@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#0B3DE6'
     },
     opened: {
-        backgroundColor: '#0998E3',
+        backgroundColor: '#FFF',
         borderColor: '#0363FA',
         alignItems: 'center',
         justifyContent: 'center'
