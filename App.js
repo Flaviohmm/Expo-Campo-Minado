@@ -8,7 +8,8 @@ import {
   openField,
   hasExplosion,
   wonGame,
-  showMines
+  showMines,
+  invertFlag
 } from './src/functions'
 
 export default class App extends Component {
@@ -52,6 +53,18 @@ export default class App extends Component {
     this.setState({ board, lost, won })
   }
 
+  onSelectField = (row, column) => {
+    const board = cloneBoard(this.state.board)
+    invertFlag(board, row, column)
+    const won = wonGame(board)
+
+    if (won) {
+      Alert.alert('Parabéns', 'Você Venceu!')
+    }
+
+    this.setState({ board, won })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -61,7 +74,8 @@ export default class App extends Component {
         </Text>
         <View style={styles.board}>
           <MineField board={this.state.board}
-            onOpenField={this.onOpenField} />
+            onOpenField={this.onOpenField}
+            onSelectField={this.onSelectField} />
         </View>
       </View>
     )
